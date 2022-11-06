@@ -3,7 +3,7 @@
 require_relative 'lib/mini_auth/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'mini_auth'
+  spec.name = 'mini_auth_rb'
   spec.version = MiniAuth::VERSION
   spec.authors = ['Ali Alhoshaiyan']
   spec.email = ['ahoshaiyan@fastmail.com']
