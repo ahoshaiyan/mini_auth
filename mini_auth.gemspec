@@ -8,13 +8,11 @@ Gem::Specification.new do |spec|
   spec.authors = ["Ali Alhoshaiyan"]
   spec.email = ["ahoshaiyan@fastmail.com"]
 
-  spec.summary = "A pragmatic authentication for Ruby on Rails."
-  spec.description = "MiniAuth is a pragmatic authentication gem for Rails that is inspired by Laravel's guards pattern to provide highly customizable and simple authentication for your web applications and APIs."
+  spec.summary = "Pragmatic authentication for Ruby on Rails."
+  spec.description = "MiniAuth is a pragmatic authentication gem for Rails that is inspired by Laravel's guards pattern that provides highly customizable and simple authentication for your web applications and APIs."
   spec.homepage = "https://github.com/ahoshaiyan/mini_auth"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
-
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ahoshaiyan/mini_auth"
@@ -36,7 +34,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activemodel"
   spec.add_dependency "actionpack"
   spec.add_dependency "bcrypt"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
 end

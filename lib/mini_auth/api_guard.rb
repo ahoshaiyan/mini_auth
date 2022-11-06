@@ -37,7 +37,7 @@ class MiniAuth::ApiGuard < MiniAuth::Guard
 
     @infer_tried ||= true
     key = key_from_bearer || key_from_basic
-    return if key.nil?
+    return nil if key.nil?
 
     @model.where(api_key: key).first
   end

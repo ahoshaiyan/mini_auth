@@ -6,9 +6,7 @@ module MiniAuth
 
     # @return [MiniAuth::AuthManager]
     def auth_manager
-      @auth_manager ||= MiniAuth::AuthManager.make(
-        Rails.application.config.mini_auth
-      )
+      @auth_manager ||= MiniAuth::AuthManager.instance
     end
 
     # @return [MiniAuth::Guard]
@@ -28,7 +26,7 @@ module MiniAuth
           guard_instance = c.auth_guard(guard)
 
           unless guard_instance.logged_in?
-            raise AuthError, 'User must be logged in!', guard_instance.login_url
+            raise AuthError.new('User must be logged in!', guard_instance.auth_url)
           end
         end
       end
@@ -40,7 +38,7 @@ module MiniAuth
           guard_instance = c.auth_guard(guard)
 
           unless guard_instance.guest?
-            raise GuestError, 'This resource is only available for unauthenticated requests', guard_instance.login_url
+            raise GuestError, 'This resource is only available for unauthenticated requests'
           end
         end
       end

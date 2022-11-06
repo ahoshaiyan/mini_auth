@@ -1,8 +1,7 @@
 # MiniAuth
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mini_auth`. To experiment with that code, run `bin/console` for an interactive prompt.
+A small authenticated gem inspired by Laravel's guards pattern.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -14,19 +13,55 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
     $ gem install mini_auth
 
+
 ## Usage
 
-TODO: Write usage instructions here
+To use MiniAuth in your project, you will need to create a new initializer file at `config/initializers/mini_auth.rb`,
+and add the following content:
 
-## Development
+```ruby
+# frozen_string_literal: true
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Rails.application.config.middleware.use(MiniAuth::ResetGuardMiddleware)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+ActiveSupport.on_load :after_initialize do
+  routes = Rails.application.routes.url_helpers
 
-## Contributing
+  guards = [
+    {
+      name: :web,
+      builder: -> (manager, name, request) {
+        MiniAuth::SessionGuard.new(name, User, request, routes.login_path, 86400)
+      }
+    }
+  ]
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mini_auth.
+  Rails.application.config.mini_auth = {
+    default: :web,
+    guards: guards.freeze
+  }
+end
+```
+
+Assuming you have an active record model called `User` and you have a route called `login`.
+
+
+### How it Works?
+
+// TODO: Explain what is a guard
+// TODO: How SessionGuard works
+// TODO: How ApiGuard works
+// TODO: How to create a new guard
+
+
+### Using Guards
+
+
+### Session Guard
+
+
+### API Guard
+
 
 ## License
 
