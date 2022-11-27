@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activesupport', '>= 6.0'
   spec.add_runtime_dependency 'activemodel', '>= 6.0'
   spec.add_runtime_dependency 'actionpack', '>= 6.0'
-  spec.add_runtime_dependency 'bcrypt', '>= 3.1.3'
+  spec.add_runtime_dependency 'bcrypt', '>= 1.0.0'
 end
