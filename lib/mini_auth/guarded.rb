@@ -4,6 +4,10 @@ module MiniAuth
   module Guarded
     extend ActiveSupport::Concern
 
+    included do
+      around_action :reset_auth_guards
+    end
+
     # @return [MiniAuth::AuthManager]
     def auth_manager
       @auth_manager ||= MiniAuth::AuthManager.instance
@@ -42,6 +46,14 @@ module MiniAuth
           end
         end
       end
+    end
+
+    private
+
+    def reset_auth_guards
+      yield
+    ensure
+      auth_manager.reset_guards!
     end
   end
 end
